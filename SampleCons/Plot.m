@@ -1,44 +1,30 @@
-% clr = [[1, 0, 0]; [1, 0.5, 0]; [1, 0.8, 0.2]; 
-%     [0, 0.8, 0]; [0.2, 1, 0.2]; [0.5, 1, 0.5];
-%     [0.3, 0.2, 1]; [0.8, 0.3, 1]; [1, 0.5, 1]];
-clr = [[1, 0, 0]; [1, 0.5, 0]; [1, 0.8, 0.2]; 
-    [0, 0.5, 0]; [0.2, 0.8, 0]; [0.6, 1, 0];
-    [0, 0.2, 1]; [0, 0.6, 1]; [0, 1, 1]];
-str = {'-'; '--'; '-.'; ':'};
+clr = ['r'; 'g'; 'b'; 'k'; 'y'];
+str = {'-'; '--'; ':'; '-.'};
+mkr = ['o'; 's'];
 
 %% =========== Plot Test Accuracy ===========
 Lgd1 = {};
 figure(1);
 cnt = 1;
 B = [10, 100, 6000];
-   
+marker_idx = 1:5:1000;
 load(sprintf('./SaveData/SCa1_B10.mat'));
-p = plot(a_mean1);  p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{1};  hold on;
-Lgd1{1} = sprintf('Alg.1,B=10');
-load(sprintf('./SaveData/SCa1_B100.mat'));
-p = plot(a_mean1);  p.LineWidth = 1.2;  p.Color = clr(2,:);  p.LineStyle = str{1};  hold on;
-Lgd1{2} = sprintf('Alg.1,B=100');
-load(sprintf('./SaveData/SCa1_B6000.mat'));
-p = plot(a_mean1);  p.LineWidth = 1.2;  p.Color = clr(3,:);  p.LineStyle = str{1};  hold on;
-Lgd1{3} = sprintf('Alg.1,B=6000');
+p1 = plot(a_mean1, '-o');
+       
+for i = 1 : length(B)
+        load(sprintf('./SaveData/SCa1_B%d.mat', B(i)));
+        p = plot(a_mean1, 'LineWidth', 1.2, 'MarkerIndices', 1:20:1000);  p.Color = clr(i,:);  p.LineStyle = str{1};	hold on;
+end
 
-% for i = 1 : length(B)
-%     
-%     load(sprintf('./SaveData/SCa1_B%d.mat', B(i)));
-%     p = plot(a_mean1, 'LineWidth', 1.5);  p.Color = clr(i,:);  p.LineStyle = str{1};  hold on;
-% end
-% 
-% 
-% for i = 1 : length(B)
-%     Lgd1{cnt} = sprintf('Alg.1, B=%d', B(i));
-%     cnt = cnt + 1;
-% end
-
+for i = 1 : length(B)
+        Lgd1{cnt} = sprintf('Alg.1, B=%d', B(i));
+        cnt = cnt + 1;
+end
 
 hold off;
 legend(Lgd1);
 grid on;
-axis([-Inf, Inf, 80, 100]);
+axis([-Inf, Inf, 70, 100]);
 xlabel('Iteration');
 ylabel('Test accuracy');
 
@@ -47,30 +33,19 @@ Lgd2 = {};
 figure(2);
 cnt = 1;
 
-load(sprintf('./SaveData/SCc1_B10.mat'));
-p = plot(c_mean1);  p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{1};  hold on;
-Lgd2{1} = sprintf('Alg.1,B=10');
-load(sprintf('./SaveData/SCc1_B100.mat'));
-p = plot(c_mean1);  p.LineWidth = 1.2;  p.Color = clr(2,:);  p.LineStyle = str{1};  hold on;
-Lgd2{2} = sprintf('Alg.1,B=100');
-load(sprintf('./SaveData/SCc1_B6000.mat'));
-p = plot(c_mean1);  p.LineWidth = 1.2;  p.Color = clr(3,:);  p.LineStyle = str{1};  hold on;
-Lgd2{3} = sprintf('Alg.1,B=6000');
+for i = 1 : length(B)
+        load(sprintf('./SaveData/SCc1_B%d.mat', B(i)));
+        p = plot(c_mean1, 'LineWidth', 1.2);  p.Color = clr(i,:);  p.LineStyle = str{1};  hold on;
+end
 
-% for i = 1 : length(B)
-%     load(sprintf('./SaveData/SCc1_B%d', B(i)));
-%     p = plot(c_mean1, 'LineWidth', 1.5);  p.Color = clr(i,:);  p.LineStyle = str{1};  hold on;
-% end
-% 
-% for i = 1 : length(B)
-%     Lgd2{cnt} = strcat('Alg.1, B=', num2str(B(i)));
-%     cnt = cnt + 1;
-% end
-
+for i = 1 : length(B)
+        Lgd2{cnt} = sprintf('Alg.1, B=%d', B(i));
+        cnt = cnt + 1;
+end
 
 hold off;
 legend(Lgd2);
 grid on;
-axis([-Inf, Inf, 0, 1.5]);
+axis([-inf, Inf, 0, 2]);
 xlabel('Iteration');
 ylabel('Training cost');

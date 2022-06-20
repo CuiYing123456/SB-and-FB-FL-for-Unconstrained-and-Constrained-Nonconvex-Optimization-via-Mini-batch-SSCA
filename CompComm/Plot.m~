@@ -1,0 +1,144 @@
+clr = [[1, 0, 0]; [1, 0.5, 0]; [1, 0.8, 0.2]; 
+    [0, 0.8, 0]; [0.2, 1, 0.2]; [0.5, 1, 0.5];
+    [0.3, 0.2, 1]; [0.8, 0.3, 1]; [1, 0.5, 1]];
+str = {'-'; '--'; '-.'; ':'};
+
+%% 
+Lgd1 = {};
+figure(1);
+
+% 85
+comp = [10, 100, 6000];
+comm1 = [28, 15, 16];
+comm2 = [36, 25, 3];
+comm3 = [33, 17, 3];
+p = loglog(comp, comm1); p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{1};  hold on;
+Lgd1{1} = sprintf('Alg.1,acc=85%s','%');
+p = loglog(comp, comm2); p.LineWidth = 1.2;  p.Color = clr(4,:);  p.LineStyle = str{1};  hold on;
+Lgd1{2} = sprintf('SGD,acc=85%s','%');
+p = loglog(comp, comm3); p.LineWidth = 1.2;  p.Color = clr(7,:);  p.LineStyle = str{1};  hold on;
+Lgd1{3} = sprintf('SGD-m,acc=85%s','%');
+
+% 90
+comp = [10, 100, 6000];
+comm1 = [66, 26, 22];
+comm2 = [153, 117, 13];
+comm3 = [80, 49, 8];
+p = loglog(comp, comm1); p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{2};  hold on;
+Lgd1{4} = sprintf('Alg.1,acc=90%s','%');
+p = loglog(comp, comm2); p.LineWidth = 1.2;  p.Color = clr(4,:);  p.LineStyle = str{2};  hold on;
+Lgd1{5} = sprintf('SGD,acc=90%s','%');
+p = loglog(comp, comm3); p.LineWidth = 1.2;  p.Color = clr(7,:);  p.LineStyle = str{2};  hold on;
+Lgd1{6} = sprintf('SGD-m,acc=90%s','%');
+
+% 95
+comp = [10, 100, 6000];
+comm1 = [357, 192, 183];
+comm2 = [1000, 1000, 260];
+comm3 = [414, 336, 70];
+p = loglog(comp, comm1); p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{3};  hold on;
+Lgd1{7} = sprintf('Alg.1,acc=95%s','%');
+p = loglog(comp, comm2); p.LineWidth = 1.2;  p.Color = clr(4,:);  p.LineStyle = str{3};  hold on;
+Lgd1{8} = sprintf('SGD,acc=95%s','%');
+p = loglog(comp, comm3); p.LineWidth = 1.2;  p.Color = clr(7,:);  p.LineStyle = str{3};  hold on;
+Lgd1{9} = sprintf('SGD-m,acc=95%s','%');
+
+hold off;
+legend(Lgd1);
+grid on;
+axis([-Inf, Inf, 1, 1000]);
+xlabel('Computation cost');
+ylabel('Communication cost');
+
+% %% 90
+% comp1 = [10, 100, 6000];
+% comm1 = [75, 26, 22];
+% comp2 = [10, 100, 6000];
+% comm2 = [83, 31, 7];
+% comp3 = [10, 100, 6000];
+% comm3 = [83, 55, 28];
+% 
+% p = semilogx(comp1, comm1); p.LineWidth = 1.2;  p.Color = clr(2,:);  p.LineStyle = str{1};  hold on;
+% Lgd1{4} = sprintf('Alg.1,acc=90%s','%');
+% p = semilogx(comp2, comm2); p.LineWidth = 1.2;  p.Color = clr(5,:);  p.LineStyle = str{1};  hold on;
+% Lgd1{5} = sprintf('SGD,acc=90%s','%');
+% p = semilogx(comp3, comm3); p.LineWidth = 1.2;  p.Color = clr(8,:);  p.LineStyle = str{1};  hold on;
+% Lgd1{6} = sprintf('SGD-m,acc=90%s','%');
+% 
+% hold off;
+% legend(Lgd2);
+% grid on;
+% % axis([-Inf, Inf, 80, 100]);
+% xlabel('Computation cost');
+% ylabel('Communication cost');
+
+%% 92
+Lgd3 = {};
+figure(3);
+comp = [10, 100, 6000];
+comm1 = [93, 52, 47];
+comp2 = [10, 100, 6000];
+comm2 = [234, 351, 38];
+comp3 = [10, 100, 6000];
+comm3 = [144, 199, 18];
+
+p = semilogx(comp, comm1); p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{1};  hold on;
+Lgd3{1} = sprintf('Alg.1');
+p = semilogx(comp2, comm2); p.LineWidth = 1.2;  p.Color = clr(4,:);  p.LineStyle = str{1};  hold on;
+Lgd3{2} = sprintf('SGD');
+p = semilogx(comp3, comm3); p.LineWidth = 1.2;  p.Color = clr(7,:);  p.LineStyle = str{1};  hold on;
+Lgd3{3} = sprintf('SGD-m');
+
+hold off;
+legend(Lgd3);
+grid on;
+% axis([-Inf, Inf, 80, 100]);
+xlabel('Computation cost');
+ylabel('Communication cost');
+
+%% 94
+Lgd4 = {};
+figure(4);
+comp = [10, 100, 6000];
+comm1 = [272, 128, 120];
+comp2 = [10, 100, 6000];
+comm2 = [358, 208, 71];
+comp3 = [10, 100, 6000];
+comm3 = [316, 275, 129];
+
+p = semilogx(comp, comm1); p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{1};  hold on;
+Lgd4{1} = sprintf('Alg.1');
+p = semilogx(comp2, comm2); p.LineWidth = 1.2;  p.Color = clr(4,:);  p.LineStyle = str{1};  hold on;
+Lgd4{2} = sprintf('SGD');
+p = semilogx(comp3, comm3); p.LineWidth = 1.2;  p.Color = clr(7,:);  p.LineStyle = str{1};  hold on;
+Lgd4{3} = sprintf('SGD-m');
+
+hold off;
+legend(Lgd4);
+grid on;
+xlabel('Computation cost');
+ylabel('Communication cost');
+
+%% 95
+Lgd5 = {};
+figure(5);
+comp = [10, 100, 6000];
+comm1 = [410, 192, 183];
+comp2 = [10, 100, 6000];
+comm2 = [612, 357, 119];
+comp3 = [10, 100, 6000];
+comm3 = [471, 401, 232];
+
+p = semilogx(comp, comm1); p.LineWidth = 1.2;  p.Color = clr(1,:);  p.LineStyle = str{1};  hold on;
+Lgd5{1} = sprintf('Alg.1');
+p = semilogx(comp2, comm2); p.LineWidth = 1.2;  p.Color = clr(4,:);  p.LineStyle = str{1};  hold on;
+Lgd5{2} = sprintf('SGD');
+p = semilogx(comp3, comm3); p.LineWidth = 1.2;  p.Color = clr(7,:);  p.LineStyle = str{1};  hold on;
+Lgd5{3} = sprintf('SGD-m');
+
+hold off;
+legend(Lgd5);
+grid on;
+% axis([-Inf, Inf, 80, 100]);
+xlabel('Computation cost');
+ylabel('Communication cost');
